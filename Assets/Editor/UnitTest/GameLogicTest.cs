@@ -4,7 +4,27 @@ using NUnit.Framework;
 namespace net.peakgames.codebreaker {
 	
 	public class GameLogicTest {
+		
+		[TestFixtureSetUp]
+		public void Init() {
+			//Init runs once before running test cases.
+		}
 
+		[TestFixtureTearDown]
+		public void CleanUp() {
+			//CleanUp runs once after all test cases are finished.
+		}
+
+		[SetUp]
+		public void SetUp() {
+			//SetUp runs before all test cases
+		}
+
+		[TearDown]
+		public void TearDown() {
+			//SetUp runs after all test cases
+		}
+			
 		[Test]
 		public void SuccessfulGuess() {
 			GameLogic mastermind = new GameLogic (new int[] {1, 2, 3, 4});

@@ -2,9 +2,9 @@
 using UnityEditor;
 using NUnit.Framework;
 namespace net.peakgames.codebreaker {
-	
+
 	public class GameLogicTest {
-		
+
 		[TestFixtureSetUp]
 		public void Init() {
 			//Init runs once before running test cases.
@@ -24,7 +24,7 @@ namespace net.peakgames.codebreaker {
 		public void TearDown() {
 			//SetUp runs after all test cases
 		}
-			
+
 		[Test]
 		public void SuccessfulGuess() {
 			GameLogic mastermind = new GameLogic (new int[] {1, 2, 3, 4});

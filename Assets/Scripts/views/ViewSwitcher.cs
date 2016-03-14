@@ -54,6 +54,8 @@ namespace net.peakgames.codebreaker.views {
 		private IEnumerator SetCurrentScreen(GameObject nextView, float duration) {
 			RectTransform rectTransform = nextView.transform as RectTransform;
 			rectTransform.anchoredPosition = new Vector2(0, Screen.height);
+
+			currentView.SetActive (false);
 			nextView.SetActive (true);
 
 			float y = rectTransform.anchoredPosition.y;
@@ -64,12 +66,11 @@ namespace net.peakgames.codebreaker.views {
 				elapsedTime += Time.deltaTime;
 				y = Mathf.SmoothStep(screenHeight, 0, elapsedTime / duration);
 				rectTransform.anchoredPosition = new Vector2(0, y);
-				yield return new WaitForEndOfFrame ();
+				yield return null;
 			}
 
 			rectTransform.anchoredPosition = new Vector2(0, 0);
 
-			currentView.SetActive (false);
 			currentView = nextView;
 		}
 

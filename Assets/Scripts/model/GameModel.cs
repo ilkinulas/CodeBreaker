@@ -7,8 +7,8 @@ namespace net.peakgames.codebreaker {
 		private GameLogic gameLogic;
 		private List<GuessResult> guessList;
 
-		public void StartGame() {
-			int[] solution = CreateRandomSolution ();
+		public void StartGame() {			
+			int[] solution = GameLogic.CreateRandomSolution ();
 			this.gameLogic = new GameLogic (solution);
 			this.guessList = new List<GuessResult> ();
 		}
@@ -20,15 +20,6 @@ namespace net.peakgames.codebreaker {
 					this.gameLogic.Check (guess));
 			this.guessList.Add( result );
 			return result;
-		}
-
-		private int [] CreateRandomSolution() {
-			Random rnd = new Random ();
-			int [] solution = new int[GameLogic.MAX_NUMBERS];
-			for (int i = 0; i < GameLogic.MAX_NUMBERS; i++) {
-				solution[i] = rnd.Next(1, GameLogic.MAX_NUMBER_OF_POSSIBLE_VALUES + 1);
-			}
-			return solution;
 		}
 	}
 

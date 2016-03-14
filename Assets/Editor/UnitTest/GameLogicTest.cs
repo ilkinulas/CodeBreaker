@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using NUnit.Framework;
+using System.Collections.Generic;
 namespace net.peakgames.codebreaker {
 
 	public class GameLogicTest {
@@ -23,6 +24,19 @@ namespace net.peakgames.codebreaker {
 		[TearDown]
 		public void TearDown() {
 			//SetUp runs after all test cases
+		}
+
+		[Test]
+		public void SolutionItemsMustBeDistinct() {
+			HashSet<int> hashSet = new HashSet<int> ();
+			for (int i = 0; i < 1000; i++) {
+				int[] solution = GameLogic.CreateRandomSolution();
+				foreach (int sol in solution) {
+					hashSet.Add (sol);
+				}
+				Assert.AreEqual (4, hashSet.Count);
+				hashSet.Clear ();
+			}
 		}
 
 		[Test]

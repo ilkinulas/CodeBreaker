@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections.Generic;
 
 namespace net.peakgames.codebreaker {
@@ -13,6 +13,17 @@ namespace net.peakgames.codebreaker {
 
 		public GameLogic(int [] solution) {
 			this.solution = solution;
+		}
+
+		public static int [] CreateRandomSolution() {
+			int [] array = new int[GameLogic.MAX_NUMBER_OF_POSSIBLE_VALUES];
+			for (int i = 0; i < array.Length; i++) {
+				array [i] = i;
+			}
+			Shuffle (array);
+			int [] result =  new int[GameLogic.MAX_NUMBERS];
+			Array.Copy (array, result, GameLogic.MAX_NUMBERS);
+			return result;
 		}
 
 		public Result Check(int [] guess) {
@@ -46,6 +57,18 @@ namespace net.peakgames.codebreaker {
 				(int)MatchType.NONE, 
 				(int)MatchType.NONE
 			};
+		}
+
+		private static void Shuffle (int [] array) {
+			Random rnd = new Random ();
+			int n = array.Length;
+			while (n > 1) 
+			{
+				int k = rnd.Next(n--);
+				int temp = array[n];
+				array[n] = array[k];
+				array[k] = temp;
+			}
 		}
 	}
 

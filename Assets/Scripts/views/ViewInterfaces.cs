@@ -12,7 +12,6 @@ namespace net.peakgames.codebreaker.views {
 
 	public interface IGameView  {
 		void Init (GameViewMediator mediator);
-		void OnInputButtonPressed (int buttonIndex);
 		void OnGuessResult(int [] guess, Result result);
 	}
 

@@ -15,6 +15,9 @@ namespace net.peakgames.codebreaker.views {
 		[Inject]
 		public IViewSwitcher viewSwitcher { get; set; }
 
+		[Inject]
+		public GameModel gameModel { get; set; }
+
 		public override void OnRegister() {
 			view.Init (this);
 		}
@@ -29,6 +32,7 @@ namespace net.peakgames.codebreaker.views {
 
 		[ListensTo(typeof(LoginSuccessSignal))]
 		public void OnLoginSuccess(LoginType loginType) {
+			gameModel.StartGame ();
 			viewSwitcher.SwitchWithAnimationTo (ViewType.Game);
 		}
 

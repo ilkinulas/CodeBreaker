@@ -11,7 +11,6 @@ namespace net.peakgames.codebreaker.commands {
 
 		public override void Execute () {
 			viewSwitcher.Initialize ();
-
 		}	
 	}
 }

@@ -8,6 +8,7 @@ namespace net.peakgames.codebreaker.views {
 
 	public interface IGameOverView  {
 		void Init (GameOverViewMediator mediator);
+		void UpdateView (int[] solution, bool newRecord, int numTries);
 	}
 
 	public interface IGameView  {

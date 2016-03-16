@@ -33,7 +33,18 @@ namespace net.peakgames.codebreaker.views
 			for (int i = 0; i < inputButtons.Length; i++) {
 				UpdateButtonColor (inputButtons [i], colors [i]);
 			}
-		}			
+		}	
+
+		void OnEnable() {
+			ResetScrollContent ();
+		}
+
+		private void ResetScrollContent() {
+			int numChildren = scrollContent.transform.childCount;
+			for (int i = 0; i < numChildren; i++) {
+				Destroy (scrollContent.transform.GetChild (i).gameObject);
+			}
+		}
 
 		private void UpdateButtonColor (Button button, Color color) {
 			ColorBlock colorBlock = button.colors;

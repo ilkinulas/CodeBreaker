@@ -2,9 +2,12 @@
 using System.Collections;
 using strange.extensions.command.impl;
 using net.peakgames.codebreaker.signals;
+using net.peakgames.codebreaker.views;
 
 namespace net.peakgames.codebreaker.commands {	
+
 	public class PlayerGuessCommand : Command {
+		
 		[Inject]
 		public int [] guess { get; set; }
 
@@ -14,9 +17,20 @@ namespace net.peakgames.codebreaker.commands {
 		[Inject]
 		public GuessResultSignal guessResultSignal { get; set; }
 
+		[Inject]
+		public IViewSwitcher viewSwitcher { get; set; }
+
+		[Inject]
+		public GameOverSignal gameOverSignal { get; set; }
+
 		public override void Execute () {
 			GuessResult guessResult = gameModel.MakeAGuess (guess);			
 			guessResultSignal.Dispatch (guessResult.guess, guessResult.result);
+
+			if (guessResult.result.IsCorrect ()) {
+				viewSwitcher.SwitchWithAnimationTo (ViewType.GameOver);
+				gameOverSignal.Dispatch (guessResult.guess, true, 5);
+			}
 		}	
 	}
 }

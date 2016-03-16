@@ -37,14 +37,17 @@ namespace net.peakgames.codebreaker {
 			commandBinder.Bind<StartAppSignal> ().To<StartAppCommand> ().Once();
 			commandBinder.Bind<PlayerGuessSignal> ().To<PlayerGuessCommand> ();
 			commandBinder.Bind<LoginRequestSignal> ().To<LoginRequestCommand> ();
+			commandBinder.Bind<StartNewGameSignal> ().To<StartNewGameCommand> ();
 
 			//Signals
 			injectionBinder.Bind<GuessResultSignal> ().ToSingleton ();
 			injectionBinder.Bind<LoginSuccessSignal> ().ToSingleton ();
 			injectionBinder.Bind<LoginFailedSignal> ().ToSingleton ();
+			injectionBinder.Bind<GameOverSignal> ().ToSingleton ();
 
 			//Models
 			injectionBinder.Bind<GameModel> ().ToSingleton ();
+			injectionBinder.Bind<StatsModel> ().ToSingleton ();
 
 			//Helper classes
 			injectionBinder.Bind<CoroutineRunner> ().ToSingleton ();

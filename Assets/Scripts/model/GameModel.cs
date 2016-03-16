@@ -11,6 +11,10 @@ namespace net.peakgames.codebreaker {
 			int[] solution = GameLogic.CreateRandomSolution ();
 			this.gameLogic = new GameLogic (solution);
 			this.guessList = new List<GuessResult> ();
+
+			foreach (int s in solution) {
+				UnityEngine.Debug.Log (s);
+			}
 		}
 
 		public GuessResult MakeAGuess(int [] guess) {

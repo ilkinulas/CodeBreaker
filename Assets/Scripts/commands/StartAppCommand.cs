@@ -9,8 +9,12 @@ namespace net.peakgames.codebreaker.commands {
 		[Inject]
 		public IViewSwitcher viewSwitcher { get; set; }
 
+		[Inject]
+		public StatsModel statsModel { get; set; }
+
 		public override void Execute () {
 			viewSwitcher.Initialize ();
+			statsModel.Load ();
 		}	
 	}
 }

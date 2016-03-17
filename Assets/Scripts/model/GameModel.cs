@@ -6,6 +6,11 @@ namespace net.peakgames.codebreaker {
 	public class GameModel {
 		private GameLogic gameLogic;
 		private List<GuessResult> guessList;
+		private int numberOfGuesses;
+		public int NumberOfGuesses {
+			get { return this.numberOfGuesses; }
+			set { this.numberOfGuesses = value; }
+		}
 
 		public void StartGame() {			
 			int[] solution = GameLogic.CreateRandomSolution ();
@@ -15,6 +20,7 @@ namespace net.peakgames.codebreaker {
 			foreach (int s in solution) {
 				UnityEngine.Debug.Log (s);
 			}
+			this.numberOfGuesses = 0;
 		}
 
 		public GuessResult MakeAGuess(int [] guess) {
@@ -23,8 +29,9 @@ namespace net.peakgames.codebreaker {
 					guess, 
 					this.gameLogic.Check (guess));
 			this.guessList.Add( result );
+			numberOfGuesses++;
 			return result;
-		}
+		}			
 	}
 
 	public class GuessResult {

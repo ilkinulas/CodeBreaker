@@ -12,13 +12,24 @@ namespace net.peakgames.codebreaker.views {
 		[Inject]
 		public StartNewGameSignal newGameSignal { get; set; }
 
+		[Inject]
+		public StatsModel statsModel { get; set; }
+
+		[Inject]
+		public GameModel gameModel { get; set; }
+
 		public override void OnRegister() {
 			this.view.Init (this);
 		}
 
 		[ListensTo(typeof(GameOverSignal))]
-		public void OnGameOver(int [] solution, bool isNewRecord, int numTries) {
-			this.view.UpdateView (solution, isNewRecord, numTries);
+		public void OnGameOver(int [] solution, bool isNewRecord) {
+			this.view.UpdateView (
+				solution, 
+				isNewRecord, 
+				gameModel.NumberOfGuesses, 
+				statsModel.BestScore, 
+				statsModel.NumberOfGamesPlayed);
 		}
 
 		public void StartNewGame() {

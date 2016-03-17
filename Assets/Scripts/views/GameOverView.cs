@@ -11,17 +11,25 @@ namespace net.peakgames.codebreaker.views {
 		[SerializeField]
 		private Text newRecordText;
 
+		[SerializeField]
+		private Text totalGamesPlayedText;
+
+		[SerializeField]
+		private Text bestScoreText;
+
 		private GameOverViewMediator mediator;
 
 		public void Init(GameOverViewMediator  mediator) {
 			this.mediator = mediator;
 		}
 
-		public void UpdateView(int [] solution, bool newRecord, int numTries) {
+		public void UpdateView(int [] solution, bool newRecord, int numTries, int bestScore, int totalGames) {
 			if (newRecord) {
 				newRecordText.gameObject.SetActive (true);
 				newRecordText.text = string.Format ("New Record '{0}' tries.", numTries);
 			}
+			bestScoreText.text = string.Format ("Best Score : {0}", bestScore);
+			totalGamesPlayedText.text = string.Format ("Total Games Played : {0}", totalGames);
 		}
 
 		public void OnNewGameButtonPressed() {

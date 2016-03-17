@@ -23,13 +23,20 @@ namespace net.peakgames.codebreaker.commands {
 		[Inject]
 		public GameOverSignal gameOverSignal { get; set; }
 
+		[Inject]
+		public StatsModel statsModel { get; set; }
+
 		public override void Execute () {
 			GuessResult guessResult = gameModel.MakeAGuess (guess);			
 			guessResultSignal.Dispatch (guessResult.guess, guessResult.result);
 
 			if (guessResult.result.IsCorrect ()) {
 				viewSwitcher.SwitchWithAnimationTo (ViewType.GameOver);
-				gameOverSignal.Dispatch (guessResult.guess, true, 5);
+				bool bestScore = statsModel.IsBestScore(gameModel.NumberOfGuesses);
+				if (bestScore) {
+					statsModel.BestScore = gameModel.NumberOfGuesses;
+				}
+				gameOverSignal.Dispatch (guessResult.guess, bestScore);
 			}
 		}	
 	}

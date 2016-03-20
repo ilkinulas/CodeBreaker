@@ -14,18 +14,13 @@ namespace net.peakgames.codebreaker.views {
 		[Inject]
 		public IGameView view {get; set;}
 
-		private List<int> guesses = new List<int> ();
 
 		public override void OnRegister() {
 			this.view.Init (this);
 		}
 
-		public void OnPlayerMadeGuess(int inputIndex) {
-			guesses.Add (inputIndex);
-			if (guesses.Count == GameLogic.MAX_NUMBERS) {
-				playerGuessSignal.Dispatch (guesses.ToArray());		
-				guesses.Clear ();
-			}
+		public void OnPlayerMadeGuess(int [] guesses) {
+			playerGuessSignal.Dispatch (guesses);		
 		}
 
 		[ListensTo(typeof(GuessResultSignal))]

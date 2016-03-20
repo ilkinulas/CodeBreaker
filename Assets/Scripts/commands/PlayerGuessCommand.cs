@@ -3,6 +3,7 @@ using System.Collections;
 using strange.extensions.command.impl;
 using net.peakgames.codebreaker.signals;
 using net.peakgames.codebreaker.views;
+using net.peakgames.codebreaker.audio;
 
 namespace net.peakgames.codebreaker.commands {	
 
@@ -26,6 +27,9 @@ namespace net.peakgames.codebreaker.commands {
 		[Inject]
 		public StatsModel statsModel { get; set; }
 
+		[Inject]
+		public PlaySoundSignal playSoundSignal { get; set; }
+
 		public override void Execute () {
 			GuessResult guessResult = gameModel.MakeAGuess (guess);			
 			guessResultSignal.Dispatch (guessResult.guess, guessResult.result);
@@ -37,6 +41,7 @@ namespace net.peakgames.codebreaker.commands {
 					statsModel.BestScore = gameModel.NumberOfGuesses;
 				}
 				gameOverSignal.Dispatch (guessResult.guess, bestScore);
+				playSoundSignal.Dispatch (GameSound.Congrats);
 			}
 		}	
 	}

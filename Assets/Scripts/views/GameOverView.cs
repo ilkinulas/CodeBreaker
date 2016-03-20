@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using strange.extensions.mediation.impl;
+using net.peakgames.codebreaker.util;
 
 namespace net.peakgames.codebreaker.views {
 	public class GameOverView : View , IGameOverView{
@@ -30,6 +31,11 @@ namespace net.peakgames.codebreaker.views {
 			}
 			bestScoreText.text = string.Format ("Best Score : {0}", bestScore);
 			totalGamesPlayedText.text = string.Format ("Total Games Played : {0}", totalGames);
+
+			int counter = 0;
+			foreach (var index in solution) {
+				solutionImages [counter++].sprite = GameUtils.GetAnimalSprite (index);
+			}
 		}
 
 		public void OnNewGameButtonPressed() {

@@ -8,6 +8,7 @@ using net.peakgames.codebreaker.signals;
 using net.peakgames.codebreaker.commands;
 using net.peakgames.codebreaker.views;
 using net.peakgames.codebreaker.util;
+using net.peakgames.codebreaker.audio;
 
 namespace net.peakgames.codebreaker {
 
@@ -44,6 +45,7 @@ namespace net.peakgames.codebreaker {
 			injectionBinder.Bind<LoginSuccessSignal> ().ToSingleton ();
 			injectionBinder.Bind<LoginFailedSignal> ().ToSingleton ();
 			injectionBinder.Bind<GameOverSignal> ().ToSingleton ();
+			injectionBinder.Bind<PlaySoundSignal> ().ToSingleton ();
 
 			//Models
 			injectionBinder.Bind<GameModel> ().ToSingleton ();
@@ -52,6 +54,7 @@ namespace net.peakgames.codebreaker {
 			//Helper classes
 			injectionBinder.Bind<CoroutineRunner> ().ToSingleton ();
 			injectionBinder.Bind<IViewSwitcher> ().To<ViewSwitcher> ().ToSingleton();
+			injectionBinder.Bind<IAudioManager> ().To<AudioManager> ().ToSingleton();
 		}
 	}
 

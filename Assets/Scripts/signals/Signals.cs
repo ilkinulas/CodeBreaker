@@ -1,5 +1,6 @@
 ﻿using strange.extensions.signal.impl;
 using net.peakgames.codebreaker.views;
+using net.peakgames.codebreaker.audio;
 
 namespace net.peakgames.codebreaker.signals {
 	public enum LoginType {
@@ -13,4 +14,5 @@ namespace net.peakgames.codebreaker.signals {
 	public class LoginRequestSignal : Signal<LoginType> {}
 	public class LoginSuccessSignal : Signal<LoginType> { public LoginSuccessSignal() { AddListener((loginType) => {});}}
 	public class LoginFailedSignal : Signal<LoginType, string> { public LoginFailedSignal() { AddListener((loginType, errorMessage) => {});}}
+	public class PlaySoundSignal : Signal<GameSound> {}
 }

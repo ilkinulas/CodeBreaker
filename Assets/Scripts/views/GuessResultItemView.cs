@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using net.peakgames.codebreaker.util;
 
 namespace net.peakgames.codebreaker.views {
 	
@@ -11,6 +12,12 @@ namespace net.peakgames.codebreaker.views {
 
 		[SerializeField]
 		private Image[] results = new Image[GameLogic.MAX_NUMBERS];
+
+		void Start() {
+			LayoutElement layoutElement = GetComponent<LayoutElement> ();
+			layoutElement.preferredHeight = GameUtils.ToDP (layoutElement.preferredHeight);
+			layoutElement.minHeight = GameUtils.ToDP (layoutElement.minHeight);
+		}
 
 		public void UpdateGuess(int [] guess, Result result, Color [] colors) {
 			for (int i = 0; i < guess.Length; i++) {

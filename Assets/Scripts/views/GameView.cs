@@ -73,6 +73,8 @@ namespace net.peakgames.codebreaker.views
 			itemView.UpdateGuess (guess, result, colors);
 
 			EnableAllInputButtons ();
+
+			scrollRect.GetComponent<ScrollViewController> ().UpdateScrollPosition ();
 		}
 
 		private void EnableAllInputButtons() {

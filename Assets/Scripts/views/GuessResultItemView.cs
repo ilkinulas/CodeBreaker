@@ -59,11 +59,11 @@ namespace net.peakgames.codebreaker.views {
 			if (images.Count == 0) {
 				yield break;
 			}
-			yield return null;
-
 			foreach (var image in images) {
 				image.rectTransform.localScale = Vector3.zero;
 			}
+
+			yield return null;
 
 			foreach (var image in images) {				
 				float elapsedTime = 0;

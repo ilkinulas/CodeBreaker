@@ -68,7 +68,6 @@ namespace net.peakgames.codebreaker {
 				int temp = array[n];
 				array[n] = array[k];
 				array[k] = temp;
-				UnityEngine.Debug.Log (n);
 			}
 		}
 	}

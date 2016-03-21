@@ -11,16 +11,13 @@ namespace net.peakgames.codebreaker {
 			get { return this.numberOfGuesses; }
 			set { this.numberOfGuesses = value; }
 		}
+		public void StartGame( int [] solution) {
+			StartGameInternal (solution);
+		}
 
 		public void StartGame() {			
 			int[] solution = GameLogic.CreateRandomSolution ();
-			this.gameLogic = new GameLogic (solution);
-			this.guessList = new List<GuessResult> ();
-
-			foreach (int s in solution) {
-				UnityEngine.Debug.Log (s);
-			}
-			this.numberOfGuesses = 0;
+			StartGameInternal (solution);
 		}
 
 		public GuessResult MakeAGuess(int [] guess) {
@@ -31,7 +28,18 @@ namespace net.peakgames.codebreaker {
 			this.guessList.Add( result );
 			numberOfGuesses++;
 			return result;
-		}			
+		}
+
+		private void StartGameInternal (int [] solution) {
+			this.gameLogic = new GameLogic (solution);
+			this.guessList = new List<GuessResult> ();
+
+			foreach (int s in solution) {
+				UnityEngine.Debug.Log (s);
+			}
+			this.numberOfGuesses = 0;
+
+		}
 	}
 
 	public class GuessResult {

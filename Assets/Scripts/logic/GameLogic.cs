@@ -15,12 +15,12 @@ namespace net.peakgames.codebreaker {
 			this.solution = solution;
 		}
 
-		public static int [] CreateRandomSolution() {
+		public static int [] CreateRandomSolution(RandomNumberInterface random) {
 			int [] array = new int[GameLogic.MAX_NUMBER_OF_POSSIBLE_VALUES];
 			for (int i = 0; i < array.Length; i++) {
 				array [i] = i;
 			}
-			Shuffle (array);
+			Shuffle (array, random);
 			int [] result =  new int[GameLogic.MAX_NUMBERS];
 			Array.Copy (array, result, GameLogic.MAX_NUMBERS);
 			return result;
@@ -59,12 +59,10 @@ namespace net.peakgames.codebreaker {
 			};
 		}
 
-		private static void Shuffle (int [] array) {
-			Random rnd = new Random ();
+		private static void Shuffle (int [] array, RandomNumberInterface random) {			
 			int n = array.Length;
-			while (n > 1) 
-			{
-				int k = rnd.Next(n--);
+			while (n > 1) {
+				int k = random.Next(n--);
 				int temp = array[n];
 				array[n] = array[k];
 				array[k] = temp;

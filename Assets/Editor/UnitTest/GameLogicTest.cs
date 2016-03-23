@@ -30,7 +30,7 @@ namespace net.peakgames.codebreaker {
 		public void SolutionItemsMustBeDistinct() {
 			HashSet<int> hashSet = new HashSet<int> ();
 			for (int i = 0; i < 10; i++) {
-				int[] solution = GameLogic.CreateRandomSolution();
+				int[] solution = GameLogic.CreateRandomSolution(new RandomNumberGenerator());
 				foreach (int sol in solution) {
 					hashSet.Add (sol);
 				}

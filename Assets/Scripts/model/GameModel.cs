@@ -4,6 +4,10 @@ using net.peakgames.codebreaker.signals;
 
 namespace net.peakgames.codebreaker {
 	public class GameModel {
+		
+		[Inject]
+		public RandomNumberInterface randomNumberGenerator { get; set; }
+
 		private GameLogic gameLogic;
 		private List<GuessResult> guessList;
 		private int numberOfGuesses;
@@ -16,7 +20,7 @@ namespace net.peakgames.codebreaker {
 		}
 
 		public void StartGame() {			
-			int[] solution = GameLogic.CreateRandomSolution ();
+			int[] solution = GameLogic.CreateRandomSolution (randomNumberGenerator);
 			StartGameInternal (solution);
 		}
 

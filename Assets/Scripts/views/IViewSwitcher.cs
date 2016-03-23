@@ -7,5 +7,6 @@
 		void Initialize();
 		void SwitchTo(ViewType view);
 		void SwitchWithAnimationTo (ViewType view);
+		ViewType GetCurrentViewType();
 	}
 }	

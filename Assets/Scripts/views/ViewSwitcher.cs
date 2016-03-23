@@ -32,6 +32,16 @@ namespace net.peakgames.codebreaker.views {
 			currentView = introView;
 		}
 
+		public ViewType GetCurrentViewType() {
+			if (currentView == introView) {
+				return ViewType.Intro;
+			} else if (currentView == gameView) {
+				return ViewType.Game;
+			} else {
+				return ViewType.GameOver;
+			}
+		}
+
 		public void SwitchTo(ViewType view) {
 			SwitchInternal (view, false, 0);
 		}

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 using strange.extensions.mediation.impl;
 using net.peakgames.codebreaker.util;
@@ -29,6 +30,11 @@ namespace net.peakgames.codebreaker.views
 		[SerializeField]
 		private Button submitButton;
 
+		[SerializeField]
+		private AnimationCurve headerExitAnimationCurve;
+
+		[SerializeField]
+		private AnimationCurve headerExitItemRotationAnimationCurve;
 
 		private GameViewMediator mediator;
 		private int headerImageIndex = 0;
@@ -106,10 +112,40 @@ namespace net.peakgames.codebreaker.views
 		}
 
 		private void ResetHeader () {
-			foreach (Image image in headerImages) {
-				image.sprite = placeHolder;
-			}
+			StartCoroutine (StartExitAnimation ());
 		}
-			
+
+		private IEnumerator StartExitAnimation(float duration=1f) {
+			yield return SetHeaderLayoutEnabled (false);
+			Vector2[] initialPositions = new Vector2[headerImages.Length];
+			for (int i = 0; i < headerImages.Length; i++) {
+				initialPositions[i]=headerImages[i].rectTransform.anchoredPosition;
+			}
+			float elapsedTime = 0f;
+			while (elapsedTime < duration) {	
+				float ratio = elapsedTime / duration;
+				float xDiff = Screen.width * headerExitAnimationCurve.Evaluate (ratio);	
+				float rotation = Mathf.PI*2 * headerExitItemRotationAnimationCurve.Evaluate (ratio);
+				for (int i = 0; i < headerImages.Length; i++) {
+					headerImages[i].rectTransform.anchoredPosition = 
+						new Vector2 (initialPositions[i].x + xDiff, initialPositions[i].y);
+					headerImages [i].rectTransform.localEulerAngles = new Vector3(0, 0, rotation);
+				}
+				elapsedTime += Time.deltaTime;
+				yield return null;
+			}
+			for (int i = 0; i < headerImages.Length; i++) {
+				headerImages[i].rectTransform.anchoredPosition = initialPositions[i];
+				headerImages [i].rectTransform.localEulerAngles = new Vector3(0, 0, 0);
+				headerImages[i].sprite = placeHolder;
+			}
+			yield return SetHeaderLayoutEnabled (true);
+		}
+
+		private IEnumerator SetHeaderLayoutEnabled(bool enabled) {
+			HorizontalLayoutGroup layout = GameObject.Find ("Header").GetComponent<HorizontalLayoutGroup> ();
+			layout.enabled = enabled;
+			yield break;
+		}
 	}
 }

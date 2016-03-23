@@ -55,6 +55,7 @@ namespace net.peakgames.codebreaker {
 			injectionBinder.Bind<CoroutineRunner> ().ToSingleton ();
 			injectionBinder.Bind<IViewSwitcher> ().To<ViewSwitcher> ().ToSingleton();
 			injectionBinder.Bind<IAudioManager> ().To<AudioManager> ().ToSingleton();
+			injectionBinder.Bind<RandomNumberInterface> ().To<RandomNumberGenerator> ().ToSingleton();
 		}
 	}
 

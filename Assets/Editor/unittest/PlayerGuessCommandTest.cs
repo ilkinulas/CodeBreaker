@@ -33,9 +33,11 @@ namespace net.peakgames.codebreaker.commands {
 			
 		[Test]
 		public void IncorrectGuest() {
+			int numberOfGamesPlayed = command.statsModel.NumberOfGamesPlayed;
 			command.guess = new int[] { 1, 2, 3, 4 };
 			command.Execute ();
 
+			Assert.AreEqual (numberOfGamesPlayed, command.statsModel.NumberOfGamesPlayed);
 			Assert.IsTrue (guessResultSignalDispatched);
 			Assert.IsFalse (gameOverSignalDispatched);
 			command.viewSwitcher.DidNotReceiveWithAnyArgs ()
@@ -44,9 +46,11 @@ namespace net.peakgames.codebreaker.commands {
 
 		[Test]
 		public void CorrectGuess() {
+			int numberOfGamesPlayed = command.statsModel.NumberOfGamesPlayed;
 			command.guess = solution;
 			command.Execute ();
 
+			Assert.AreEqual (numberOfGamesPlayed + 1, command.statsModel.NumberOfGamesPlayed);
 			Assert.IsTrue (guessResultSignalDispatched);
 			Assert.IsTrue (gameOverSignalDispatched);
 

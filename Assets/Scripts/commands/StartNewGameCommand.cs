@@ -13,12 +13,8 @@ namespace net.peakgames.codebreaker.commands {
 		[Inject]
 		public GameModel gameModel { get; set; }
 
-		[Inject]
-		public StatsModel statsModel { get; set; }
-
 		public override void Execute () {
 			gameModel.StartGame ();
-			statsModel.NumberOfGamesPlayed++;
 			viewSwitcher.SwitchWithAnimationTo (ViewType.Game);	
 		}
 	}

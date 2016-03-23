@@ -26,8 +26,8 @@ namespace net.peakgames.codebreaker {
 		[Test]
 		public void StatsShouldPersistAccrossInstances() {
 			StatsModel stats1 = new StatsModel ();
-			stats.NumberOfGamesPlayed = 15;
-			stats.BestScore = 4;
+			stats1.NumberOfGamesPlayed = 15;
+			stats1.BestScore = 4;
 
 			StatsModel stats2 = new StatsModel ();
 			stats2.Load ();

@@ -55,14 +55,6 @@ namespace net.peakgames.codebreaker.views
 			}
 		}
 
-		private void UpdateButtonColor (Button button, Color color) {
-			ColorBlock colorBlock = button.colors;
-			colorBlock.normalColor = color;
-			colorBlock.highlightedColor = color;
-			colorBlock.pressedColor = color * 0.8f;
-			button.colors = colorBlock;
-		}
-
 		public void Init (GameViewMediator mediator) {			
 			this.mediator = mediator;
 		}
@@ -86,7 +78,7 @@ namespace net.peakgames.codebreaker.views
 		}
 
 		public void OnGuessResult (int[] guess, Result result) {			
-			GameObject resultItem = Instantiate (this.guessResultPrefab);
+			GameObject resultItem = Instantiate (guessResultPrefab);
 			resultItem.transform.SetParent (scrollContent.transform);
 
 			GuessResultItemView itemView = resultItem.GetComponent<GuessResultItemView> ();

@@ -40,6 +40,7 @@ namespace net.peakgames.codebreaker.commands {
 				if (bestScore) {
 					statsModel.BestScore = gameModel.NumberOfGuesses;
 				}
+				statsModel.NumberOfGamesPlayed++;
 				gameOverSignal.Dispatch (guessResult.guess, bestScore);
 				playSoundSignal.Dispatch (GameSound.Congrats);
 			}

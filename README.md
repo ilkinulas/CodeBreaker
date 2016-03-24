@@ -4,7 +4,7 @@ This is a demo Unity3D project developed for [GDG Istanbul Workshop @PeakGames](
 
 It is a simple (and modified) implementation of [MasterMind](https://en.wikipedia.org/wiki/Mastermind_(board_game)) board game. 
 
-![Game Screenshot]http://ilkinulas.github.io/assets/others/code_breaker_screenshot.png
+![Game Screenshot](http://ilkinulas.github.io/assets/others/code_breaker_screenshot.png)
 
 The aim of this project is to practice:
 

@@ -21,6 +21,10 @@ namespace net.peakgames.codebreaker.views {
 		public override void OnRegister() {
 			this.view.Init (this);
 		}
+			
+		public void StartNewGame() {
+			newGameSignal.Dispatch ();
+		}
 
 		[ListensTo(typeof(GameOverSignal))]
 		public void OnGameOver(int [] solution, bool isNewRecord) {
@@ -30,10 +34,6 @@ namespace net.peakgames.codebreaker.views {
 				gameModel.NumberOfGuesses, 
 				statsModel.BestScore, 
 				statsModel.NumberOfGamesPlayed);
-		}
-
-		public void StartNewGame() {
-			newGameSignal.Dispatch ();
 		}
 	}
 }

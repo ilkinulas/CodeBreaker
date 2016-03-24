@@ -48,18 +48,9 @@ namespace net.peakgames.codebreaker {
 				}
 			}
 			return new Result(whites, blacks);
-		}
+		}			
 
-		private int [] CreateEmptyResult () {
-			return new int[] { 
-				(int)MatchType.NONE, 
-				(int)MatchType.NONE, 
-				(int)MatchType.NONE, 
-				(int)MatchType.NONE
-			};
-		}
-
-		private static void Shuffle (int [] array, RandomNumberInterface random) {			
+		public static void Shuffle (int [] array, RandomNumberInterface random) {			
 			int n = array.Length;
 			while (n > 1) {
 				int k = random.Next(n--);

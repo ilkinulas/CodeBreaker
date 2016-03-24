@@ -9,9 +9,10 @@ namespace net.peakgames.codebreaker.commands {
 	public class PlayerGuessCommandTest {
 
 		private PlayerGuessCommand command;
-		private int[] solution = { 3, 5, 7, 1 };
 		private bool guessResultSignalDispatched;
 		private bool gameOverSignalDispatched;
+		private int[] solution = { 1, 2, 3, 4 };
+
 
 		[SetUp]
 		public void SetUp() {
@@ -25,7 +26,10 @@ namespace net.peakgames.codebreaker.commands {
 			command.statsModel = new StatsModel ();
 			command.playSoundSignal = new PlaySoundSignal ();
 		
-			command.gameModel.StartGame (solution);
+			RandomNumberInterface random = Substitute.For<RandomNumberInterface> ();
+			random.Next (Arg.Any<int>()).Returns (0);
+			command.gameModel.randomNumberGenerator = random;
+			command.gameModel.StartGame ();
 
 			guessResultSignalDispatched = false;
 			gameOverSignalDispatched = false;
@@ -34,7 +38,7 @@ namespace net.peakgames.codebreaker.commands {
 		[Test]
 		public void IncorrectGuest() {
 			int numberOfGamesPlayed = command.statsModel.NumberOfGamesPlayed;
-			command.guess = new int[] { 1, 2, 3, 4 };
+			command.guess = new int[] { 5, 1, 7, 2 };
 			command.Execute ();
 
 			Assert.AreEqual (numberOfGamesPlayed, command.statsModel.NumberOfGamesPlayed);

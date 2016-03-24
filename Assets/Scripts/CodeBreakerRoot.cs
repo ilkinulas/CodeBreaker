@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using strange.extensions.context.impl;
 
 namespace net.peakgames.codebreaker {
@@ -8,8 +7,12 @@ namespace net.peakgames.codebreaker {
 		[SerializeField]
 		private bool IntegrationTestsEnabled = false;
 
+		[SerializeField]
+		private int TimeScaleForIntegrationTests = 1;
+
 		void Awake () {
 			if (IsIntegrationTest()) {
+				Time.timeScale = TimeScaleForIntegrationTests;
 				context = new IntegrationTestContext (this);
 				CreateTestRunnerIfNecessary ();
 			} else {

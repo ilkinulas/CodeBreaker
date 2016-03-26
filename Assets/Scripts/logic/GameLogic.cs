@@ -13,6 +13,9 @@ namespace net.peakgames.codebreaker {
 
 		public GameLogic(int [] solution) {
 			this.solution = solution;
+			foreach (int sol in solution) {
+				UnityEngine.Debug.Log (sol);
+			}
 		}
 
 		public static int [] CreateRandomSolution(RandomNumberInterface random) {
@@ -50,6 +53,7 @@ namespace net.peakgames.codebreaker {
 			return new Result(whites, blacks);
 		}			
 
+		//Fisher–Yates Shuffle
 		public static void Shuffle (int [] array, RandomNumberInterface random) {			
 			int n = array.Length;
 			while (n > 1) {

@@ -15,4 +15,4 @@ The aim of this project is to practice:
 
 [StangeIOC](http://strangeioc.github.io/strangeioc/) is used as a dependency injection framework.
 
-This project uses [Kenney Assets](http://kenney.nl/assets for graphics and audio.
+This project uses [Kenney Assets](http://kenney.nl/assets) for graphics and audio.

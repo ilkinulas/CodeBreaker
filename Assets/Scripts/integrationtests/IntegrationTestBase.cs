@@ -92,6 +92,15 @@ namespace net.peakgames.codebreaker.test {
 			return root;
 		}
 
+		protected IEnumerator MakeAGuess(int [] guess){ 
+			foreach (var i in guess) {
+				yield return ClickButton ("input_button_" + i);
+				yield return Wait (0.5f);
+			}
+			yield return ClickButton ("SubmitButton");
+			yield return Wait (3);
+		}
+
 		protected IEnumerator AssertViewType(ViewType type) {
 			if (viewSwitcher.GetCurrentViewType () != type) {
 				throw new Exception ("Expected view type " + type + " but current view is " + viewSwitcher.GetCurrentViewType());
